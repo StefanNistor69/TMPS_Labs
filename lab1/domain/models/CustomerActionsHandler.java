@@ -43,7 +43,7 @@ public class CustomerActionsHandler {
                     int wishBatteryCapacity = scanner.nextInt();
                     ElectricCar electricToWish = new ElectricCar(electricModelToWish, wishBatteryCapacity);
                     if (stockManager.isCarInStock(electricToWish)) {
-                        customer.addToWishlist(electricToWish);
+                        customer.addElectricToWishlist(electricToWish);
                         System.out.println("Added " + electricToWish + " to your wishlist!");
                     } else {
                         System.out.println("Car not in stock!");

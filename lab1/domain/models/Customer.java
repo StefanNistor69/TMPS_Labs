@@ -12,6 +12,12 @@ public class Customer implements IWishlistManager {
     }
 
     @Override
+    public void addElectricToWishlist(ElectricCar electricCar) {
+        wishlist.add(electricCar);
+        System.out.println("Customer added " + electricCar.getElectricModel() + " to their wishlist.");
+    }
+
+    @Override
     public void removeFromWishlist(Car car) {
         wishlist.remove(car);
         System.out.println("Customer removed " + car.getModel() + " from their wishlist.");

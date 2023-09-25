@@ -28,31 +28,30 @@
 ## Implementation
 __SRP (Single Responsibility Principle)__
 
-* __Shoe and Customer classes:__ They focus only on representing data related to shoes and customers, respectively.
-* __BuyingService:__ Handles the buying process, ensuring it's separate from the core entities.
-* __Factories (ShoeFactory and CustomerFactory):__ They deal with the creation of their respective entities, ensuring that object instantiation is abstracted away.
+* __Car, ElectricCar, and Paint classes__ simply define the objects and their properties.
+* __StockManager:__ manages the stock of cars, paints, etc.
+* __DealerActionHandler and CustomerActionHandler:__ handle actions specific to them.
+* __CarFactory:__ is responsible for creating cars.
 
 Thus, each class/component retains a single, focused responsibility.
 
 __OCP (Open/Closed Principle)__
 
-* The code allows for the addition of new types of shoes or customers without necessitating alterations to the **MainApp**.
-* If there's a need to introduce a new buying method, a new method can be added to BuyingService without modifying the existing ones.
-* Extensibility is apparent: If you need to add more shoe or customer types, you can merely append them to the existing lists without modifying any switch-case structures.
+* By creating subclasses (like ElectricCar as a subclass of Car), I can add more features and properties to specific types of cars without changing the basic Car class.
 
 __LSP (Liskov Substitution Principle)__
 
-* Is demonstrated through the **SpecialOnlineBuyer** subclass. This subclass enhances the behavior of the superclass (**Customer**) without changing its original behavior, thus ensuring that the **SpecialOnlineBuyer** is a perfect substitute for the **Customer** class.
+* With the addition of subclasses like ElectricCar, I am respecting this principle. As ElectricCar is a type of Car, anywhere you expect a Car, an ElectricCar could be used.
 
 __ISP (Interface Segregation Principle)__
 
-* The code integrates the buying behavior from two Interfaces into BuyingService class.
-* ISP is achieved by segregating the buying actions into two separate interfaces. This means if we have customers who only shop online or only in-store, they can implement only the relevant interface.
+* By having interfaces like __IStockManager__, I ensure that classes implementing this interface won't have to implement methods they don't use.
+
 
 __DIP (Dependency Inversion Principle)__
 
-* MainApp utilizes abstractions, like **ShoeFactory** and **CustomerFactory**, to instantiate objects. This abstraction ensures MainApp isn't tightly coupled with concrete classes.
-* The introduction of a service (**BuyingService**) also aligns with DIP.
+* My system depends on abstractions and not on concrete details. For instance, by relying on the IStockManager interface instead of a concrete StockManager class, I've made sure high-level modules are not directly dependent on low-level modules.
+
 
 ## Output:
 ```
@@ -100,6 +99,5 @@ Choose an action:
 
 
 ## Conclusions / Screenshots / Results
-&ensp; In crafting this Shoe Store Simulation, I've seen firsthand how the SOLID principles can streamline and enhance software design. By using the ShoeFactory for creating shoe instances, I've adhered to the Single Responsibility Principle, ensuring each class does one thing well. The introduction of OnlineBuyer and InStoreBuyer interfaces exemplifies the Interface Segregation Principle, allowing for flexibility in purchase methods without burdening the Customer class. Overall, these principles haven't just made the code more organized; they've made it intuitive and ready for future growth.
-
+&ensp; In this car dealership project, a modular and object-oriented approach was adeptly applied to manage various functionalities for both dealers and customers. Adherence to the Single Responsibility Principle was evident with each class distinctly managing its own responsibilities, ensuring simplicity and clarity. By utilizing interfaces and subclasses, the system embraced the Open/Closed and Liskov Substitution Principles, allowing for seamless extensibility and ensuring type substitutability. The implementation of specific interfaces like IStockManager showcased the Interface Segregation Principle, ensuring efficient and meaningful class-method relationships. Overall, through a judicious application of the SOLID principles, the project has been sculpted into a robust, scalable, and maintainable system.
 
