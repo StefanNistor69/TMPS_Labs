@@ -20,7 +20,7 @@ public class CustomerActionsHandler {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Choose an action: \n1. View Products \n2. Add Car to Wishlist \n3. Exit");
+            System.out.println("Choose an action: \n1. View Products \n2. Add Car to Wishlist \n3. Add Electric Car to Wishlist \n4. Exit");
             int choice = scanner.nextInt();
 
             switch (choice) {
@@ -37,6 +37,20 @@ public class CustomerActionsHandler {
                     }
                     break;
                 case 3:
+                    System.out.println("Enter Electric Car Model to add to wishlist (TESLA, LEAF, NIO):");
+                    ElectricCarModel electricModelToWish = ElectricCarModel.valueOf(scanner.next().toUpperCase());
+                    System.out.println("Enter its battery capacity in kWh:");
+                    int wishBatteryCapacity = scanner.nextInt();
+                    ElectricCar electricToWish = new ElectricCar(electricModelToWish, wishBatteryCapacity);
+                    if (stockManager.isCarInStock(electricToWish)) {
+                        customer.addToWishlist(electricToWish);
+                        System.out.println("Added " + electricToWish + " to your wishlist!");
+                    } else {
+                        System.out.println("Car not in stock!");
+                    }
+                    break;
+
+                case 4:
                     return;
                 default:
                     System.out.println("Invalid choice!");

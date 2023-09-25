@@ -21,7 +21,7 @@ public class DealerActionsHandler {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Choose an action: \n1. Add Car to Stock \n2. Add Paint to Stock \n3. Add Part to Stock \n4. Remove Paint from Stock \n5. Remove Part from Stock \n6. Exit");
+            System.out.println("Choose an action: \n1. Add Car to Stock \n2. Add Paint to Stock \n3. Add Part to Stock \n4. Remove Paint from Stock \n5. Remove Part from Stock \n6. Add Electric Car to stock \n7. Exit");
             int choice = scanner.nextInt();
 
             switch (choice) {
@@ -52,7 +52,16 @@ public class DealerActionsHandler {
                     stockManager.removePartFromStock(partToRemove);
                     break;
                 case 6:
-                    return;  // Exit the loop
+                    System.out.println("Choose an electric car model (TESLA, LEAF, NIO):");
+                    ElectricCarModel chosenModel = ElectricCarModel.valueOf(scanner.next().toUpperCase());
+                    System.out.println("Enter battery capacity in kWh:");
+                    int batteryCapacity = scanner.nextInt();
+                    ElectricCar electricCar = new ElectricCar(chosenModel, batteryCapacity);
+                    stockManager.addCarToStock(electricCar);
+                    System.out.println("Dealer added " + electricCar + " to stock");
+                    break;
+                case 7:
+                    return;
                 default:
                     System.out.println("Invalid choice!");
             }

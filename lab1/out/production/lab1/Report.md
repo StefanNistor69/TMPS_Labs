@@ -1,6 +1,6 @@
 # Topic: *SOLID Principles*
 
-## Author: Grama Alexandru
+## Author: Nistor Stefan
 
 ----
 
@@ -56,15 +56,46 @@ __DIP (Dependency Inversion Principle)__
 
 ## Output:
 ```
-Alex Johnson chose Shoe{brand='Adidas', size=40, type='sports', price=128.0, stockCount=12}
-Alex Johnson bought a shoe online.
-
-Benjamin Lee chose Shoe{brand='Adidas', size=40, type='sports', price=128.0, stockCount=12}
-Benjamin Lee bought a shoe in-store.
-
-Jessica Ramirez chose Shoe{brand='Puma', size=43, type='sports', price=134.0, stockCount=13}
-Jessica Ramirez bought a shoe online.
-Jessica Ramirez received a special online discount.
+Login as: 
+1. Dealer 
+2. Customer 
+3. Exit
+1
+Choose an action: 
+1. Add Car to Stock 
+2. Add Paint to Stock 
+3. Add Part to Stock 
+4. Remove Paint from Stock 
+5. Remove Part from Stock 
+6. Exit
+1
+Enter Car Model (SEDAN, SUV, TRUCK, HATCHBACK):
+SEDAN
+Choose an action: 
+1. Add Car to Stock 
+2. Add Paint to Stock 
+3. Add Part to Stock 
+4. Remove Paint from Stock 
+5. Remove Part from Stock 
+6. Exit
+6
+Login as: 
+1. Dealer 
+2. Customer 
+3. Exit
+2
+Choose an action: 
+1. View Products 
+2. Add Car to Wishlist 
+3. Exit
+2
+Enter Car Model to add to wishlist (SEDAN, SUV, TRUCK, HATCHBACK):
+SEDAN
+Customer added SEDAN to their wishlist.
+Choose an action: 
+1. View Products 
+2. Add Car to Wishlist 
+3. Exit
 ```
 
 
