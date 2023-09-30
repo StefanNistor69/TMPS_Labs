@@ -21,37 +21,39 @@ public class DealerActionsHandler {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Choose an action: \n1. Add Car to Stock \n2. Add Paint to Stock \n3. Add Part to Stock \n4. Remove Paint from Stock \n5. Remove Part from Stock \n6. Add Electric Car to stock \n7. Exit");
+            System.out.println("Choose an action: \n1. Add Car to Stock \n2. Remove Paint from Stock \n3. Remove Part from Stock \n4. Add Electric Car to stock \n5. Exit");
             int choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
-                    CarFactory factory = new CarFactory();
+                    CarBuilder builder = new CarBuilder(stockManager);
                     System.out.println("Enter Car Model (SEDAN, SUV, TRUCK, HATCHBACK):");
-                    Car car = factory.createCar(CarModel.valueOf(scanner.next().toUpperCase()));
+                    builder.setModel(CarModel.valueOf(scanner.next().toUpperCase()));
+
+                    System.out.println("Enter paint color:");
+                    builder.setPaint(new Paint(scanner.next()));
+
+                    System.out.println("Do you want to add parts? (yes/no)");
+                    while ("yes".equalsIgnoreCase(scanner.next())) {
+                        System.out.println("Enter part name:");
+                        builder.setPart(new Part(scanner.next()));
+                        System.out.println("Add another part? (yes/no)");
+                    }
+
+                    Car car = builder.build();
                     stockManager.addCarToStock(car);
                     break;
                 case 2:
-                    System.out.println("Enter paint color:");
-                    Paint paint = new Paint(scanner.next());
-                    stockManager.addPaintToStock(paint);
-                    break;
-                case 3:
-                    System.out.println("Enter part name:");
-                    Part part = new Part(scanner.next());
-                    stockManager.addPartToStock(part);
-                    break;
-                case 4:
                     System.out.println("Enter paint color to remove:");
                     Paint paintToRemove = new Paint(scanner.next());
                     stockManager.removePaintFromStock(paintToRemove);
                     break;
-                case 5:
+                case 3:
                     System.out.println("Enter part name to remove:");
                     Part partToRemove = new Part(scanner.next());
                     stockManager.removePartFromStock(partToRemove);
                     break;
-                case 6:
+                case 4:
                     CarFactory electricFactory = new CarFactory();
                     System.out.println("Choose an electric car model:");
                     ElectricCarModel chosenModel = ElectricCarModel.valueOf(scanner.next().toUpperCase());
@@ -59,7 +61,7 @@ public class DealerActionsHandler {
                     stockManager.addCarToStock(electricCar);
                     System.out.println("Dealer added " + electricCar + " to stock");
                     break;
-                case 7:
+                case 5:
                     return;
                 default:
                     System.out.println("Invalid choice!");

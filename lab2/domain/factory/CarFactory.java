@@ -5,12 +5,17 @@ import domain.models.CarModel;
 import domain.models.ElectricCar;
 import domain.models.ElectricCarModel;
 
-public class CarFactory {
+public class CarFactory implements AbstractFactory {
+    @Override
     public Car createCar(CarModel model) {
         return new Car(model);
     }
 
+    @Override
     public ElectricCar createElectricCar(ElectricCarModel electricModel) {
         return new ElectricCar(electricModel);
     }
+
+
 }
+
